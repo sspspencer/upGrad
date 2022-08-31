@@ -22,12 +22,32 @@ const startNewSession = (data) => {
 router.get('/', (req, res) => {
     User.findAll({
         // respond with all attributes of user except password
-        attributes: {exclude: ['password']},
+        attributes: {
+            // remove password attribute from the response
+            exclude: ['password'],
+            // add attribute ('project_count') to the response that keeps track of a user's number of Projects
+            include: [
+                [
+                    sequelize.literal('(SELECT COUNT(*) FROM project WHERE user.id = project.user_id)'),
+                    'project_count'
+                ]
+            ]
+        },
         // also include a list of user projects
         include: [
             {
                 model: Project,
-                attributes: ['id', 'title', 'drive_url', 'createdAt']
+                attributes: [
+                    'id',
+                    'user_id',
+                    'title',
+                    'abstract',
+                    'collab_status',
+                    'drive_url',
+                    'discipline',
+                    'subject',
+                    'created_at'
+                ]
             }
         ]
     })
@@ -44,7 +64,17 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
     User.findOne({
         // respond with all attributes of user except password
-        attributes: {exclude: ['password']},
+        attributes: {
+            // remove password attribute from the response
+            exclude: ['password'],
+            // add attribute ('project_count') to the response that keeps track of a user's number of Projects
+            include: [
+                [
+                    sequelize.literal('(SELECT COUNT(*) FROM project WHERE user.id = project.user_id)'),
+                    'project_count'
+                ]
+            ]
+        },
         // only respond with user who matched params id
         where: {
             id: req.params.id
@@ -53,7 +83,17 @@ router.get('/:id', (req, res) => {
         include: [
             {
                 model: Project,
-                attributes: ['id', 'title', 'drive_url', 'createdAt']
+                attributes: [
+                    'id',
+                    'user_id',
+                    'title',
+                    'abstract',
+                    'collab_status',
+                    'drive_url',
+                    'discipline',
+                    'subject',
+                    'created_at'
+                ]
             }
         ]
     })
