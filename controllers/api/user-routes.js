@@ -37,17 +37,18 @@ router.get('/', (req, res) => {
         include: [
             {
                 model: Project,
-                attributes: [
-                    'id',
-                    'user_id',
-                    'title',
-                    'abstract',
-                    'collab_status',
-                    'drive_url',
-                    'discipline',
-                    'subject',
-                    'created_at'
-                ]
+                // Trying something new: Sequelize documentation says you don't need to include attributes list
+                // attributes: [
+                //     'id',
+                //     'user_id',
+                //     'title',
+                //     'abstract',
+                //     'collab_status',
+                //     'drive_url',
+                //     'discipline',
+                //     'subject',
+                //     'created_at'
+                // ]
             }
         ]
     })
@@ -83,17 +84,18 @@ router.get('/:id', (req, res) => {
         include: [
             {
                 model: Project,
-                attributes: [
-                    'id',
-                    'user_id',
-                    'title',
-                    'abstract',
-                    'collab_status',
-                    'drive_url',
-                    'discipline',
-                    'subject',
-                    'created_at'
-                ]
+                // Trying something new: Sequelize documentation says you don't need to include attributes list
+                // attributes: [
+                //     'id',
+                //     'user_id',
+                //     'title',
+                //     'abstract',
+                //     'collab_status',
+                //     'drive_url',
+                //     'discipline',
+                //     'subject',
+                //     'created_at'
+                // ]
             }
         ]
     })
