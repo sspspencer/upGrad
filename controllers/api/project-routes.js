@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const {User, Project} = require('../../model');
+const authLogin = require('../../utils/auth');
 
 // get all projects (shown from newest to oldest)
 router.get('/', (req, res) => {
@@ -35,7 +36,7 @@ router.get('/:id', (req, res) => {
 });
 
 // create a project
-router.post('/', (req, res) => {
+router.post('/', authLogin, (req, res) => {
     Project.create({
         // these are all the data we'll need from input fields on frontend when the req is made
         user_id: req.session.user_id,
@@ -55,7 +56,7 @@ router.post('/', (req, res) => {
 });
 
 // update a project
-router.put('/:id', (req, res) => {
+router.put('/:id', authLogin, (req, res) => {
     Project.update({
         title: req.body.title,
         abstract: req.body.abstract,
@@ -76,7 +77,7 @@ router.put('/:id', (req, res) => {
 });
 
 // delete a project
-router.put('/:id', (req, res) => {
+router.put('/:id', authLogin, (req, res) => {
     Project.destroy({
         where: {
             id: req.params.id

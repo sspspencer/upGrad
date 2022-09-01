@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const sequelize = require('sequelize'); // in case of a sequelize.literal
 const {User, Project} = require('../../models');
+const authLogin = require('../../utils/auth');
 
 const startNewSession = (data) => {
     // check if user is already logged in (just in case)
@@ -122,7 +123,7 @@ router.post('/', (req, res) => {
 });
 
 // enter your credentials (login)
-router.post('/login', (req, res) => {
+router.post('/login', authLogin, (req, res) => {
     // expected req.body:
     // {email: 'exname@gmail.com', password: 'exPassword'}
     User.findOne({
@@ -165,7 +166,7 @@ router.post('/logout', (req, res) => {
 });
 
 // change name/password (past MVP)
-router.put('/:id', (req, res) => {
+router.put('/:id', authLogin, (req, res) => {
     // expected req.body:
     // {name: 'Example Name', password: 'exPassword'}
     User.update(req.body, {
@@ -189,7 +190,7 @@ router.put('/:id', (req, res) => {
 });
 
 // delete account (past MVP?)
-router.get('/:id', (req, res) => {
+router.get('/:id', authLogin, (req, res) => {
     User.destroy({
         where: {
             id: req.params.id
@@ -200,7 +201,6 @@ router.get('/:id', (req, res) => {
             res.status(404).json({message: 'No user found matching this id.'});
             return;
         }
-
     })
     .catch(err => {
         console.log(err);
