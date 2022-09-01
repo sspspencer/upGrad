@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const {User, Project} = require('../../model');
+const {User, Project} = require('../../models');
 const authLogin = require('../../utils/auth');
 
 // get all projects (shown from newest to oldest)

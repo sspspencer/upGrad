@@ -1,4 +1,3 @@
-
 // import models
 const Project = require('./Project');
 const User = require('./User');

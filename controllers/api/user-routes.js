@@ -1,5 +1,4 @@
 const router = require('express').Router();
-const {User, Post} = require('../../models');
 const sequelize = require('sequelize'); // in case of a sequelize.literal
 const {User, Project} = require('../../models');
 const authLogin = require('../../utils/auth');
