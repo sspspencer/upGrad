@@ -1,17 +1,9 @@
 const { Model, DataTypes } = require('sequelize');
-
+const bcrypt = require('bcrypt');
 const sequelize = require('../config/connections.js');
 
 class User extends Model { }
 
-
-// -- table for the users
-// -- user id
-// -- password
-// -- email
-// -- institution
-
-// set up fields and rules for User model
 User.init(
     {
         id: {
@@ -20,7 +12,7 @@ User.init(
             primaryKey: true,
             autoIncrement: true
         },
-        username: {
+        name: {
             type: DataTypes.STRING,
             allowNull: false
         },

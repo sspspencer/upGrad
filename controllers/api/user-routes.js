@@ -1,22 +1,24 @@
 const router = require('express').Router();
-const sequelize = require('sequelize'); // in case of a sequelize.literal
+const sequelize = require('../../config/connections'); // in case of a sequelize.literal
 const {User, Project} = require('../../models');
 const authLogin = require('../../utils/auth');
 
 const startNewSession = (data) => {
     // check if user is already logged in (just in case)
-    if (req.session.loggedIn) {
-        res.status(500).json({message: `${req.session.name} is already logged in`});
-        return;
-    }
+    // if (req.session.loggedIn) {
+    //     res.status(500).json({message: `${req.session.name} is already logged in`});
+    //     return;
+    // }
     // else, start new session
-    req.session.save((data) => {
-        // start a new session with user credentials (user_id & name)
-        req.session.user_id = newUserData.id;
-        req.session.name = newUserData.name;
-        req.session.loggedIn = true;
-        res.json({user: data, message: `${req.session.name} has logged in`});
-    });
+    // req.session.save((data) => {
+    //     // start a new session with user credentials (user_id & name)
+    //     req.session.user_id = newUserData.id;
+    //     req.session.name = newUserData.name;
+    //     req.session.loggedIn = true;
+    //     res.json({user: data, message: `${req.session.name} has logged in`});
+    // });
+    console.log(data);
+    res.json(data);
 };
 
 // find all users
@@ -119,7 +121,9 @@ router.post('/', (req, res) => {
         password: req.body.password,
         institution: req.body.institution
     })
-    .then(newUserData => startNewSession(newUserData))
+    .then(newUserData => {
+        res.json(newUserData);
+    })
 });
 
 // enter your credentials (login)

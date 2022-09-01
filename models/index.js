@@ -1,4 +1,5 @@
 // import models
+// const router = require('../controllers');
 const Project = require('./Project');
 const User = require('./User');
 
@@ -30,3 +31,5 @@ User.hasMany(Project, {
 //   Post.hasMany(Comment, {
 //     foreignKey: 'post_id'
 //   });
+
+module.exports = {User, Project};
