@@ -47,11 +47,18 @@ Project.init(
         ongoing_status: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
-        }
+        },
+        // createdAt: {
+        //     type: 'TIMESTAMP',
+        //     defaultValue: sequelize.literal(
+        //         "TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP"
+        //     ),
+        // }
     },
     {
         sequelize,
         timestamps: false,
+        underscored: true,
         freezeTableName: true,
         underscored: true,
         modelName: 'project',

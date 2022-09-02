@@ -127,7 +127,7 @@ router.post('/', (req, res) => {
 });
 
 // enter your credentials (login)
-router.post('/login', authLogin, (req, res) => {
+router.post('/login', (req, res) => {
     // expected req.body:
     // {email: 'exname@gmail.com', password: 'exPassword'}
     User.findOne({
@@ -170,7 +170,7 @@ router.post('/logout', (req, res) => {
 });
 
 // change name/password (past MVP)
-router.put('/:id', authLogin, (req, res) => {
+router.put('/:id', (req, res) => {
     // expected req.body:
     // {name: 'Example Name', password: 'exPassword'}
     User.update(req.body, {
@@ -194,7 +194,7 @@ router.put('/:id', authLogin, (req, res) => {
 });
 
 // delete account (past MVP?)
-router.get('/:id', authLogin, (req, res) => {
+router.delete('/:id', (req, res) => {
     User.destroy({
         where: {
             id: req.params.id
@@ -205,6 +205,7 @@ router.get('/:id', authLogin, (req, res) => {
             res.status(404).json({message: 'No user found matching this id.'});
             return;
         }
+        res.json(deleteResults);
     })
     .catch(err => {
         console.log(err);
