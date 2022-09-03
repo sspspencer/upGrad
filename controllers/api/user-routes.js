@@ -86,7 +86,7 @@ router.get('/:id', (req, res) => {
 });
 
 // create a user (sign up)
-router.post('/', (req, res) => {
+router.post('/signup', (req, res) => {
     // expected req.body:
     // {name: 'Example Name', email: 'exname@gmail.com', password: 'exPassword', institution: 'Ex University'}
     User.create({
