@@ -2,8 +2,13 @@ const router = require('express').Router();
 const sequelize = require('sequelize');
 const {User, Project} = require('../models');
 
-// display a list of projects on homepage
+// homepage (prompt login & sign up)
 router.get('/', (req, res) => {
+    res.render('homepage');
+});
+
+// display a list of projects on homepage
+router.get('/dashboard', (req, res) => {
     Project.findAll({
         include: [
             {
@@ -16,7 +21,7 @@ router.get('/', (req, res) => {
         // this formats the data Sequelize gives us in a readable format
         const projects = allProjects.map(project => project.get({plain: true}));
         // use the data from the response + loggedIn status to render homepage.handlebars
-        res.render('homepage', {
+        res.render('dashboard', {
             projects,
             // loggedIn: req.session.loggedIn
         });
