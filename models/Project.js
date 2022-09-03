@@ -48,6 +48,10 @@ Project.init(
             type: DataTypes.BOOLEAN,
             allowNull: false,
         },
+        name: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
         // createdAt: {
         //     type: 'TIMESTAMP',
         //     defaultValue: sequelize.literal(
