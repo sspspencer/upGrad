@@ -1,8 +1,6 @@
-// @ SONJA: THIS IS AN EXAMPLE OF A SEEDS TEMPLATE FROM OUR MODULE.
-// WE'LL OBVIOUSLY NEED MORE DATA FOR OUR POST OBJECTS,
-// BUT THIS IS A GOOD TEMPLATE FOR WRITING SEEDS :)
-
 const { Project } = require('../models');
+const sequelize = require('../config/connections');
+
 
 const projectdata = [
   {
@@ -141,8 +139,7 @@ const projectdata = [
     user_id: 3
   },
   {
-    project_name:
-      'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam.',
+    project_name: 'Vestibulum ante',
     abstract: 'i am the abstract!',
     subject: '',
     ongoing_status: true,
