@@ -82,7 +82,7 @@ const response = await fetch(`api/projects${getSearchWords(
         institutionVal, subjectVal, collabVal, unfinishedVal
     )}`, {
     method: 'GET',
-    body: JSON.stringify({}), // what would be the body
+    body: JSON.stringify({queryStr}),
     header: {
         'Content-Type': 'application/json'
     }
