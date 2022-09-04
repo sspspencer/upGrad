@@ -1,21 +1,43 @@
 const router = require("express").Router();
+const { where } = require("sequelize/types");
 const { User, Project } = require("../../models");
 const authLogin = require("../../utils/auth");
 
-// fetch(`api/projects?subject=math`)
+// fetch(`api/projects?subject=math?inst=Carleton?`)
 
 // get all projects (shown from newest to oldest)
 router.get("/", (req, res) => {
-  const { instu, subject } = req.query;
-  const where = {};
-  if (instu) {
-    where.instu = instu;
-  }
+  console.log(req.body);
+  Project.findAll({
+    // attributes: {
+    //     include: [['created_at']]
+    // },
+    // newest posts will show first based on id number
+    order: [["id", "ASC"]],
+  })
+    .then((allProjects) => res.json(allProjects))
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
 
+// query specific results
+router.get("/", (req, res) => {
+  const {institution, subject, collab, unfinished} = req.query;
+  // const where = {};
+  if (institution) {
+    where.institution = instution;
+  }
   if (subject) {
     where.subject = subject;
   }
-
+  if(collab) {
+    where.collab = collab;
+  }
+  if(unfinished) {
+    where.unfinished = unfinished;
+  }
   Project.findAll({
     // attributes: {
     //     include: [['created_at']]
