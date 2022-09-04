@@ -23,27 +23,17 @@ router.get("/", (req, res) => {
 });
 
 // query specific results
-router.get("/", (req, res) => {
-  const {institution, subject, collab, unfinished} = req.query;
-  // const where = {};
-  if (institution) {
-    where.institution = instution;
-  }
-  if (subject) {
-    where.subject = subject;
-  }
-  if(collab) {
-    where.collab = collab;
-  }
-  if(unfinished) {
-    where.unfinished = unfinished;
-  }
+router.get('/:query', (req, res) => {
+  console.log(req.query.queryStr);
   Project.findAll({
     // attributes: {
     //     include: [['created_at']]
     // },
     // newest posts will show first based on id number
-    where,
+    
+    where: {
+      query: req.query.queryStr
+    },
     order: [["id", "ASC"]],
   })
     .then((allProjects) => res.json(allProjects))
