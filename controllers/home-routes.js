@@ -9,7 +9,7 @@ router.get("/", (req, res) => {
 });
 
 // display a list of projects on homepage
-router.get("/dashboard", authLogin, (req, res) => {
+router.get("/dashboard", (req, res) => {
   Project.findAll({
     include: [
       {

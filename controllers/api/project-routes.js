@@ -1,39 +1,39 @@
 const router = require("express").Router();
-const { where } = require("sequelize/types");
 const { User, Project } = require("../../models");
 const authLogin = require("../../utils/auth");
+const getSearchWords = require('../../utils/projectQueryString');
+// const filterLogin = require('../../public/js/filterProject');
 
 // fetch(`api/projects?subject=math?inst=Carleton?`)
 
 // get all projects (shown from newest to oldest)
-router.get("/", (req, res) => {
-  console.log(req.body);
-  Project.findAll({
-    // attributes: {
-    //     include: [['created_at']]
-    // },
-    // newest posts will show first based on id number
-    order: [["id", "ASC"]],
-  })
-    .then((allProjects) => res.json(allProjects))
-    .catch((err) => {
-      console.log(err);
-      res.status(500).json(err);
-    });
-});
+// router.get("/", (req, res) => {
+//   console.log(req.body);
+//   Project.findAll({
+//     // attributes: {
+//     //     include: [['created_at']]
+//     // },
+//     // newest posts will show first based on id number
+//     order: [["id", "ASC"]],
+//   })
+//     .then((allProjects) => res.json(allProjects))
+//     .catch((err) => {
+//       console.log(err);
+//       res.status(500).json(err);
+//     });
+// });
 
 // query specific results
-router.get('/:query', (req, res) => {
-  console.log(req.query.queryStr);
+router.get('/', (req, res) => {
+  console.log("=========================================");
+  const where = getSearchWords(req.query);
+  console.log(where);
   Project.findAll({
     // attributes: {
     //     include: [['created_at']]
     // },
     // newest posts will show first based on id number
-    
-    where: {
-      query: req.query.queryStr
-    },
+    where,
     order: [["id", "ASC"]],
   })
     .then((allProjects) => res.json(allProjects))
