@@ -6,15 +6,13 @@
                 <div class="media">
                     <img class="mr-3" src="..." alt="Generic placeholder image">
                     <div class="media-body">
-                        <h5 class="mt-0">USER NAME</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">UNIVERSITY NAME</h6>
+                        <h5 class="mt-0">{{user.name}}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">{{user.institution}}</h6>
+                        {{!-- add functionality for email --}}
                         <button>Message</button>
+                        <button>Add Project</button>
                         <p>
-                            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin.
-                            Cras
-                            purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac
-                            nisi
-                            vulputate fringilla. Donec lacinia congue felis in faucibus.
+                            i am the about me blurbs
                         </p>
                     </div>
                 </div>
@@ -30,10 +28,9 @@
                     <button type="button">view research!</button>
 
                     i am the research!
-                    <div class="container">
+                    <div class="container d-none">
                         <div class="row">
                             <div class="col">
-                                <!-- add resarch cards, will need JS to dynamically generate?-->
                                 <div class="card-deck" style="width: 18rem;">
                                     <div class="card">
                                         <div class="card-body">
@@ -41,13 +38,12 @@
                                             <!--MAYBE I BECOME CLICKABLE AND TAKE YOU to THE profile IN THE FUTURE?-->
                                             <h6 class="card-subtitle mb-2 text-muted">STUDENTS NAME</h6>
                                             <h6 class="card-subtitle mb-2 text-muted">UNIVERSITY NAME</h6>
-                                            <p class="card-text">Some quick example text to build on the card title and
-                                                make up the bulk
-                                                of
-                                                the card's content.</p>
+                                            <h5><span class="badge badge-secondary">Ongoing</span></h5>
+                                            {{!-- i am the ongoing or completed status IF STATMENT--}}
+                                            <h5><span class="badge badge-secondary">Seeking Collaborators</span></h5>
+                                            <p class="card-text">i am the abstract</p>
                                             <a href="#" class="card-link">GOOGLE DRIVE LINK</a>
                                             <div class="card-footer">
-                                                <small class="text-muted">BONJOUR I AM THE COLLAB STATUS?</small>
                                             </div>
                                         </div>
                                     </div>

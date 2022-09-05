@@ -1,40 +1,59 @@
-<div> i am where the filter and projects go
+<div>
+    <button class="sticky-top" id="filter-btn">Filter +</button>
+</div>
+<div class="container d-none" id="show-filter">
+    <span class="text-muted">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <select onchange="selectedInstu()">
+                    <option value="Carleton">Carleton</option>
+                    <option value="McMaster">McMaster</option>
+                    <option value="Coding Bootcamp">Coding Bootcamp!</option>
+                    <option value="All Universities">All Universities</option>
+                </select>
+            </div>
+            <div class="input-group-prepend">
+                <select id="dept" onchange=" selectedDept()">
+                    <option value="Arts">Arts</option>
+                    <option value="Sciences">Sciences</option>
+                    <option value="Coding">Coding</option>
+                    <div role="separator" class="dropdown-divider"></div>
+                    <option value="All Departments">All Departments</option>
+                </select>
+            </div>
+            <div class="input-group-prepend">
+                <select id="collab" onchange=" selectedCollab()">
+                    <option value="Seeking Collaborators">Seeking Collaborators</option>
+                    <option value="Not Seeking Collaborators">Not Seeking Collaborators</option>
+                    <div role="separator" class="dropdown-divider"></div>
+                    <option value="Any Collaboration Status">Any Collaboration Status</option>
+                </select>
+            </div>
+        </div>
+</div>
+</span>
+</div>
 
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <!-- add resarch cards, will need JS to dynamically generate?-->
-                <div class="card-deck" style="width: 18rem;">
-                    <div class="card">
-                        <div class="card-body">
-                            {{#each projects}}
-                            <h5 class="card-title">{{project_name}}PROJECT TITLE</h5>
-                            {{!-- i am the subject! --}}
-                            <h5><span class="badge">{{subject}} SUBJECT</span></h5>
-                            {{!-- i am the ongoing or completed status I AM AN IF STATEMENT--}}
-                            <h5><span class="badge badge-secondary">Ongoing</span></h5>
-                            {{!-- i am the ongoing or completed status IF STATMENT--}}
-                            <h5><span class="badge badge-secondary">Seeking Collaborators</span></h5>
-                            <!--MAYBE I BECOME CLICKABLE AND TAKE YOU to THE profile IN THE FUTURE?-->
-                            <h6 class="card-subtitle mb-2 text-muted">{{name}} STUDENTS NAME</h6>
-                            <h6 class="card-subtitle mb-2 text-muted">{{institution}} UNIVERSITY NAME</h6>
-                            <p class="card-text">{{abstract}}Some quick example text to build on the card title
-                                and make up the bulk
-                                of
-                                the card's content.</p>
-                            <a href="#" class="card-link">{{project_url}}GOOGLE DRIVE LINK</a>
-                            <div class="card-footer">
-                                {{!-- i am uncertain how we want to make the collab status show up... --}}
-                                {{!-- <small class="text-muted">{{project.collab_status}}BONJOUR I AM THE COLLAB
-                                    STATUS?</small> --}}
-                            </div>
-                            {{/each}}
+<div class="container">
+    {{#each projects}}
+    <div class="row">
+        <div class="col">
+            <div class="card-deck" style="width: 18rem;">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{project_name}}</h5>
+                        <h5><span class="badge bg-secondary">{{subject}}</span></h5>
+                        <h5 class="txt-dark"><span class="badge bg-secondary">Ongoing Status:{{ongoing_status}}</span>
+                        </h5>
+                        <h5><span class="badge bg-secondary">Seeking Collaborators: {{collab_status}}</span></h5>
+                        <h6 class="card-subtitle mb-2 text-muted">{{user.name}}</h6>
+                        <h6 class="card-subtitle mb-2 text-muted">{{user.institution}}</h6>
+                        <p class="card-text">{{abstract}}</p>
+                        <a href="#" class="card-link">{{project_url}}</a>
+                        <div class="card-footer">
                         </div>
                     </div>
                 </div>
-
-
             </div>
         </div>
-
-    </div>
+        {{/each}}
