@@ -1,23 +1,27 @@
-<div>
-    <button class="sticky-top" id="filter-btn">Filter +</button>
-</div>
-<div class="container d-none" id="show-filter">
-    <form class="input-group mb-3 text-muted">
-        <div class="input-group-prepend">
+<p>
+  <a class="btn sticky-top" data-toggle="collapse" href="#filterMenu" role="button">Filter +</a>
+</p>
+<div class="collapse" id="filterMenu">
+    <form class="mb-3 d-flex flew-row flex-wrap justify-content-center border align-items-center rounded py-3 mx-2 bg-light">
+        <div class="m-4">
             <label for="institution-query">Institution</label>
-            <input class="" type="text" id="institution-query" name="institution-query">
-            {{!-- <select onchange="selectedInstu()">
-                <option value="Carleton">Carleton</option>
-                <option value="McMaster">McMaster</option>
-                <option value="Coding Bootcamp">Coding Bootcamp!</option>
-                <option value="All Universities">All Universities</option>
-            </select> --}}
+            <input type="search" id="institution-query" name="institution-query">
         </div>
-        <div class="input-group-prepend">
-            
-        </div>
-        <div class="input-group-prepend">
-            
+        <div class="d-flex flex-row">
+            <div class="m-4">
+            <p>Collaborators</p>
+            <label for="collab-query-yes">Yes</label>
+            <input class="mt-1" type="radio" id="collab-query-yes" name="collab-query">
+            <label for="collab-query-no">Not Open</label>
+            <input type="radio" id="collab-query-no" name="collab-query">
+            </div>
+            <div class="m-4">
+                <p>Finished</p>
+                <label for="finished-query-yes">Yes</label>
+                <input type="radio" id="finished-query-yes" name="finished-query">
+                <label for="finished-query-no">No</label>
+                <input type="radio" id="finished-query-no" name="finished-query">
+            </div>
         </div>
     </form>
 </div>
