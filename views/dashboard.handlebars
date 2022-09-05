@@ -2,36 +2,24 @@
     <button class="sticky-top" id="filter-btn">Filter +</button>
 </div>
 <div class="container d-none" id="show-filter">
-    <span class="text-muted">
-        <div class="input-group mb-3">
-            <div class="input-group-prepend">
-                <select onchange="selectedInstu()">
-                    <option value="Carleton">Carleton</option>
-                    <option value="McMaster">McMaster</option>
-                    <option value="Coding Bootcamp">Coding Bootcamp!</option>
-                    <option value="All Universities">All Universities</option>
-                </select>
-            </div>
-            <div class="input-group-prepend">
-                <select id="dept" onchange=" selectedDept()">
-                    <option value="Arts">Arts</option>
-                    <option value="Sciences">Sciences</option>
-                    <option value="Coding">Coding</option>
-                    <div role="separator" class="dropdown-divider"></div>
-                    <option value="All Departments">All Departments</option>
-                </select>
-            </div>
-            <div class="input-group-prepend">
-                <select id="collab" onchange=" selectedCollab()">
-                    <option value="Seeking Collaborators">Seeking Collaborators</option>
-                    <option value="Not Seeking Collaborators">Not Seeking Collaborators</option>
-                    <div role="separator" class="dropdown-divider"></div>
-                    <option value="Any Collaboration Status">Any Collaboration Status</option>
-                </select>
-            </div>
+    <form class="input-group mb-3 text-muted">
+        <div class="input-group-prepend">
+            <label for="institution-query">Institution</label>
+            <input class="" type="text" id="institution-query" name="institution-query">
+            {{!-- <select onchange="selectedInstu()">
+                <option value="Carleton">Carleton</option>
+                <option value="McMaster">McMaster</option>
+                <option value="Coding Bootcamp">Coding Bootcamp!</option>
+                <option value="All Universities">All Universities</option>
+            </select> --}}
         </div>
-</div>
-</span>
+        <div class="input-group-prepend">
+            
+        </div>
+        <div class="input-group-prepend">
+            
+        </div>
+    </form>
 </div>
 
 <div class="container">

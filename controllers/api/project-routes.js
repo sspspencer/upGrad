@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const { User, Project } = require("../../models");
 const authLogin = require("../../utils/auth");
-const getSearchWords = require('../../utils/projectQueryString');
+const getWhereObj = require('../../utils/projectQueryObj');
 // const filterLogin = require('../../public/js/filterProject');
 
 // fetch(`api/projects?subject=math?inst=Carleton?`)
@@ -25,18 +25,18 @@ const getSearchWords = require('../../utils/projectQueryString');
 
 // query specific results
 router.get('/', (req, res) => {
-  console.log("=========================================");
-  const where = getSearchWords(req.query);
-  console.log(where);
+  const where = getWhereObj(req.query);
   Project.findAll({
-    // attributes: {
-    //     include: [['created_at']]
-    // },
-    // newest posts will show first based on id number
     where,
     order: [["id", "ASC"]],
   })
-    .then((allProjects) => res.json(allProjects))
+    .then((allProjects) => {
+      // this is currently not going to be called because allProjects returns a '[]'
+      if (!allProjects) {
+        res.json({message: 'No results for this search'});
+      }
+      res.json(allProjects);
+    })
     .catch((err) => {
       console.log(err);
       res.status(500).json(err);
