@@ -144,18 +144,17 @@ router.post("/login", (req, res) => {
   })
     .then((dbUserData) => {
       // if no db email matches email in the request, return status 404
-      // if (!userCred) {
-      //   res.status(404).json({ message: "No user found with this email" });
-      //   // could add frontend or utils function to notify user on webpage that their "email or password is incorrect"
-      //   return;
-      // }
+      if (!dbUserData) {
+        res.status(404).json({ message: "No user found with this email" });
+        // could add frontend or utils function to notify user on webpage that their "email or password is incorrect"
+        return;
+      }
       // if password is invalid, return status 400
-      // const validPassword = userCred.checkPassword(req.body.password);
-      // if (!validPassword) {
-      //   res.status(400).json({ message: "Password is incorrect" });
-      //   return;
-      // }
-      // else, start new session
+      const validPassword = dbUserData.checkPassword(req.body.password);
+      if (!validPassword) {
+        res.status(400).json({ message: "Password is incorrect" });
+        return;
+      }
 
       req.session.save(() => {
         req.session.user_id = dbUserData.id;
