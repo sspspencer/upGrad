@@ -5,42 +5,33 @@ const sequelize = require('../config/connections');
 const projectdata = [
   {
     project_name: 'Donec posuere metus vitae ipsum.',
-    institution: 'carleton',
-    abstract: 'i am the abstract!',
     subject: 'a',
     ongoing_status: true,
     project_url: 'https://buzzfeed.com/in/imperdiet/et/commodo/vulputate.png',
     collab_status: true,
     user_id: 1,
-    name: 'bob'
   },
-  // {
-  //   project_name: 'Morbi non quam nec dui luctus rutrum.',
-  //   abstract: 'i am the abstract!',
-  //   subject: '',
-  //   ongoing_status: true,
-  //   project_url: 'https://nasa.gov/donec.json',
-  //   collab_status: false,
-  //   user_id: 8
-  // },
-  // {
-  //   project_name: 'Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue.',
-  //   abstract: 'i am the abstract!',
-  //   subject: '',
-  //   ongoing_status: true,
-  //   project_url: 'https://europa.eu/parturient/montes/nascetur/ridiculus/mus/etiam/vel.aspx',
-  //   collab_status: true,
-  //   user_id: 1
-  // },
-  // {
-  //   project_name: 'Nunc purus.',
-  //   abstract: 'i am the abstract!',
-  //   subject: '',
-  //   ongoing_status: true,
-  //   project_url: 'http://desdev.cn/enim/blandit/mi.jpg',
-  //   collab_status: true,
-  //   user_id: 4
-  // },
+
+  {
+    project_name: 'Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue.',
+    abstract: 'i am the abstract!',
+    subject: 'b',
+    ongoing_status: true,
+    project_url: 'https://europa.eu/parturient/montes/nascetur/ridiculus/mus/etiam/vel.aspx',
+    collab_status: true,
+    user_id: 2,
+
+  },
+
+  {
+    project_name: 'Nunc purus.',
+    abstract: 'i am the abstract!',
+    subject: 'c',
+    ongoing_status: true,
+    project_url: 'http://desdev.cn/enim/blandit/mi.jpg',
+    collab_status: true,
+    user_id: 4
+  },
   // {
   //   project_name: 'Pellentesque eget nunc.',
   //   abstract: 'i am the abstract!',

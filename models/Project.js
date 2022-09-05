@@ -28,6 +28,7 @@ Project.init(
         abstract: {
             type: DataTypes.STRING,
             allowNull: false,
+            defaultValue: '',
         },
         collab_status: {
             type: DataTypes.BOOLEAN,
@@ -48,16 +49,13 @@ Project.init(
             type: DataTypes.BOOLEAN,
             allowNull: false,
         },
-        name: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
         // createdAt: {
         //     type: 'TIMESTAMP',
         //     defaultValue: sequelize.literal(
         //         "TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP"
         //     ),
         // }
+
     },
     {
         sequelize,

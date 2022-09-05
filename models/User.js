@@ -14,7 +14,12 @@ User.init(
         },
         name: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: false,
+            defaultValue: '',
+            // references: {
+            //     model: 'user',
+            //     key: 'id'
+            // }
         },
         email: {
             type: DataTypes.STRING,
