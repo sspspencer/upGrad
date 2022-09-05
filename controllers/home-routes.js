@@ -8,24 +8,32 @@ router.get("/", (req, res) => {
   res.render("homepage");
 });
 
-// display a list of projects on homepage
+
+// display a list of projects on homepage authLogin,
 router.get("/dashboard", (req, res) => {
   Project.findAll({
+    attributes: [
+      'id',
+      'project_name',
+      'abstract',
+      'collab_status',
+      'ongoing_status',
+      'project_url',
+      'subject',
+    ],
     include: [
       {
         model: User,
-        attributes: ["name", "institution"],
+        attributes: ['name', 'institution'],
       },
     ],
   })
     .then((allProjects) => {
       // this formats the data Sequelize gives us in a readable format
-      const projects = allProjects.map((project) =>
-        project.get({ plain: true })
-      );
+      const projects = allProjects.map(project => project.get({ plain: true }));
       // use the data from the response + loggedIn status to render homepage.handlebars
       res.render("dashboard", {
-        projects,
+        projects
         // loggedIn: req.session.loggedIn
       });
     })
