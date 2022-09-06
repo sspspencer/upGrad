@@ -9,7 +9,7 @@ router.get("/", (req, res) => {
 });
 
 // display a specific project on its own page
-router.get("project/:id", (req, res) => {
+router.get("project/:id", authLogin, (req, res) => {
   Project.findOne({
     include: [
       {

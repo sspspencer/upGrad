@@ -5,7 +5,7 @@ const authLogin = require("../utils/auth");
 const getWhereObj = require('../utils/projectQueryObj');
 
 // display a list of projects on homepage authLogin,
-router.get("/", (req, res) => {
+router.get("/", authLogin, (req, res) => {
   Project.findAll({
     attributes: [
       'id',
@@ -38,7 +38,7 @@ router.get("/", (req, res) => {
     });
 });
 
-  router.get('/search', (req, res) => {
+  router.get('/search', authLogin, (req, res) => {
     console.log('ENTERING ROUTE');
     const where = getWhereObj(req.query);
     Project.findAll({
@@ -62,7 +62,7 @@ router.get("/", (req, res) => {
   })
 
 
-router.get("/edit/:id", (req, res) => {
+router.get("/edit/:id", authLogin, (req, res) => {
   // get a project (based on project id)
   Project.findOne({
     where: {

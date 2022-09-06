@@ -16,7 +16,6 @@ const getSearchWords = (subjectVal, collabYesVal, collabNoVal, unfinishedYesVal,
     let collabNoQuery;
     let unfinishedYesQuery;
     let unfinishedNoQuery;
-    debugger;
     // if there is a value in input field...
     if (subjectVal !== '') {
         // change the start of the query string from '?' to '&'  based on if there are already one or more queries
