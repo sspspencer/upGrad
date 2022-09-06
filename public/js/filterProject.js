@@ -1,92 +1,93 @@
-// on change ADD to query
-// const institutionVal = document.querySelector('#institution-query');
-// const subjectVal = document.querySelector('#subject-query');
-// const collabVal = document.querySelector('#collab-query');
-// const unfinishedVal = document.querySelector('#not-finished-query');
-
+const subjectVal = document.querySelector('#subject-query');
+const collabYesVal = document.querySelector('#collab-query-yes');
+const collabNoVal = document.querySelector('#collab-query-no');
+const unfinishedYesVal = document.querySelector('#finished-query-yes');
+const unfinishedNoVal = document.querySelector('#finished-query-no');
+// const obj = {subject: subjectVal.value, collab: collabVal.value, unfinished: unfinishedVal.value};
 // this function is creating a query string based on what the user enters. This query string would then be handled
 // on the backend.
-const getSearchWords = (queryObj) => {
+const getSearchWords = (subjectVal, collabYesVal, collabNoVal, unfinishedYesVal, unfinishedNoVal) => {
+    console.log(subjectVal);
     const queriesArr = [];
     let queryCount = 0;
-    // these would be input fields on frontend
-    let institutionQuery;
     let subjectQuery;
-    // these would be radio buttons (true/false) on frontend
-    let collabQuery;
-    let unfinishedQuery;
+    let collabYesQuery;
+    let collabNoQuery;
+    let unfinishedYesQuery;
+    let unfinishedNoQuery;
 
     // if there is a value in input field...
-    if (queryObj.institution) {
-        queryCount++;
+    if (subjectVal !== '') {
         // change the start of the query string from '?' to '&'  based on if there are already one or more queries
         if(queryCount >= 1) {
-            institutionQuery = `&institution=${queryObj.institution.toLowerCase()}`;
+            subjectQuery = `&subject=${subjectVal}`;
         } else {
-            institutionQuery = `?institution=${queryObj.institution.toLowerCase()}`;
+            subjectQuery = `?subject=${subjectVal}`;
         }
-        queriesArr.push(institutionQuery);
-    }
-    // if there is a value in input field...
-    if (queryObj.subject) {
         queryCount++;
-        // change the start of the query string from '?' to '&'  based on if there are already one or more queries
-        if(queryCount >= 1) {
-            subjectQuery = `&subject=${queryObj.subject.toLowerCase()}`;
-        } else {
-            subjectQuery = `?subject=${queryObj.subject.toLowerCase()}`;
-        }
         queriesArr.push(subjectQuery);
     }
     // if the 'open collab' radio button is checked...
-    if (queryObj.collab) {
-        queryCount++;
+    if (collabYesVal.checked) {
         // change the start of the query string from '?' to '&'  based on if there are already one or more queries
         if(queryCount >= 1) {
-            collabQuery = `&collab=${queryObj.collab}`;
+            collabYesQuery = `&collab_status=true`;
         } else {
-            collabQuery = `?collab=${queryObj.collab}`;
+            collabYesQuery = `?collab_status=true`;
         }
-        queriesArr.push(collabQuery);
+        queryCount++;
+        queriesArr.push(collabYesQuery);
+    }
+    if (collabNoVal.checked) {
+        // change the start of the query string from '?' to '&'  based on if there are already one or more queries
+        if(queryCount >= 1) {
+            collabNoQuery = `&collab_status=false`;
+        } else {
+            collabNoQuery = `?collab_status=false`;
+        }
+        queryCount++;
+        queriesArr.push(collabNoQuery);
     }
     // if the 'open collab' radio button is checked...
-    if (queryObj.unfinished) {
-        queryCount++;
+    if (unfinishedYesVal.checked) {
         // change the start of the query string from '?' to '&'  based on if there are already one or more queries
         if(queryCount >= 1) {
-            unfinishedQuery = `&unfinished=${queryObj.unfinished}`;
+            unfinishedYesQuery = `&ongoing_status=true`;
         } else {
-            unfinishedQuery = `?unfinished=${queryObj.unfinished}`;
+            unfinishedYesQuery = `?ongoing_status=true`;
         }
-        queriesArr.push(unfinishedQuery);
+        queryCount++;
+        queriesArr.push(unfinishedYesQuery);
+    }
+    if (unfinishedNoVal.checked) {
+        // change the start of the query string from '?' to '&'  based on if there are already one or more queries
+        if(queryCount >= 1) {
+            unfinishedNoQuery = `&ongoing_status=false`;
+        } else {
+            unfinishedNoQuery = `?ongoing_status=false`;
+        }
+        queryCount++;
+        queriesArr.push(unfinishedNoQuery);
     }
     // join the query fragments into one whole query & return
     const queryStr = queriesArr.join('');
-    return queryStr;
+    console.log(queryStr);
+    return `/dashboard/search${queryStr}`;
 }
 
-getSearchWords();
+async function filter (event) {
+    event.preventDefault();
+    console.log(subjectVal.value);
+        const response = await fetch(`${getSearchWords(
+            subjectVal.value, collabYesVal, collabNoVal, unfinishedYesVal, unfinishedNoVal
+            )}`, {
+        method: 'GET',
+        header: {
+            'Content-Type': 'application/json'
+        }
+    });
+    // const json = await response;
+    document.location.replace(`${getSearchWords(subjectVal.value, collabYesVal, collabNoVal, unfinishedYesVal, unfinishedNoVal)}`);
+}
 
-// const filter = (event) => {
-//     event.preventDefault(); //is this needed
-//     let target = event.target;
-//     // if the user doesn't click on the elements related to the query, return
-//     if (target !== institutionVal 
-//         && target !== subjectVal
-//         && target !== collabVal
-//         && target !== unfinishedVal) return;
-//     // else, fetch query;
-//     response;
-// };
-
-// const response = await fetch(`api/projects${getSearchWords(
-//         institutionVal, subjectVal, collabVal, unfinishedVal
-//     )}`, {
-//     method: 'GET',
-//     body: JSON.stringify({queryStr}),
-//     header: {
-//         'Content-Type': 'application/json'
-//     }
-// });
-
-// document.querySelector('#navbarToggleExternalContent').addEventListener('click', filter);
+document.querySelector('#filter-form').addEventListener('submit', filter);

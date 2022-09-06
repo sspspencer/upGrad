@@ -23,26 +23,6 @@ const getWhereObj = require('../../utils/projectQueryObj');
 //     });
 // });
 
-// query specific results
-router.get('/', (req, res) => {
-  const where = getWhereObj(req.query);
-  Project.findAll({
-    where,
-    order: [["id", "ASC"]],
-  })
-    .then((allProjects) => {
-      // this is currently not going to be called because allProjects returns a '[]'
-      if (!allProjects) {
-        res.json({message: 'No results for this search'});
-      }
-      res.json(allProjects);
-    })
-    .catch((err) => {
-      console.log(err);
-      res.status(500).json(err);
-    });
-});
-
 // get a single project
 router.get("/:id", (req, res) => {
   Project.findOne({

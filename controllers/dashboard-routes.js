@@ -2,37 +2,33 @@ const router = require("express").Router();
 const sequelize = require("sequelize");
 const { User, Project } = require("../models");
 const authLogin = require("../utils/auth");
+const getWhereObj = require('../utils/projectQueryObj');
 
-// display dashboard
+// display a list of projects on homepage authLogin,
 router.get("/", (req, res) => {
-  // get logged in User's info
-  User.findOne({
-    where: {
-      id: req.session.id,
-    },
-    // include the Projects related to this User
+  Project.findAll({
+    attributes: [
+      'id',
+      'project_name',
+      'abstract',
+      'collab_status',
+      'ongoing_status',
+      'project_url',
+      'subject',
+    ],
     include: [
       {
-        model: Project,
-        attributes: [
-          "id",
-          "project_name",
-          "abstract",
-          "collab_status",
-          "project_url",
-          "subject",
-          "ongoing_status",
-        ],
+        model: User,
+        attributes: ['name', 'institution'],
       },
     ],
   })
-    .then((userProfile) => {
-      // Not sure what format this data is returned in. Logging to see result
-      // If result isn't proper format, we'll need to reformat if with userProfile.projects.get({plain: true})
-      console.log(userProfile);
-      // use the data from the response + loggedIn status to render dashboard.handlebars
-      res.render("homepage", {
-        userProfile,
+    .then((allProjects) => {
+      // this formats the data Sequelize gives us in a readable format
+      const projects = allProjects.map(project => project.get({ plain: true }));
+      // use the data from the response + loggedIn status to render homepage.handlebars
+      res.render("dashboard", {
+        projects
         // loggedIn: req.session.loggedIn
       });
     })
@@ -41,6 +37,30 @@ router.get("/", (req, res) => {
       res.status(500).json(err);
     });
 });
+
+  router.get('/search', (req, res) => {
+    console.log('ENTERING ROUTE');
+    const where = getWhereObj(req.query);
+    Project.findAll({
+      where,
+      raw: true,
+      order: [["id", "ASC"]],
+    })
+      .then((allProjects) => {
+        // this is currently not going to be called because allProjects returns a '[]'
+        if (!allProjects) {
+          res.json({message: 'No results found for this search'});
+        }
+        console.log(allProjects);
+        res.render('dashboard', {allProjects});
+      })
+      .catch((err) => {
+        console.log('ENTERING ERROR');
+        console.log(err);
+        res.status(500).json(err);
+      });
+  })
+
 
 router.get("/edit/:id", (req, res) => {
   // get a project (based on project id)

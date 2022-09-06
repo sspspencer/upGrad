@@ -1,18 +1,18 @@
-<p>
+<p class="ml-2">
   <a class="btn sticky-top" data-toggle="collapse" href="#filterMenu" role="button">Filter +</a>
 </p>
 <div class="collapse" id="filterMenu">
-    <form class="mb-3 d-flex flew-row flex-wrap justify-content-center border align-items-center rounded py-3 mx-2 bg-light">
+    <form id="filter-form" class="mb-3 d-flex flew-row flex-wrap justify-content-center border align-items-center rounded py-3 mx-2 bg-light">
         <div class="m-4">
-            <label for="institution-query">Institution</label>
-            <input type="search" id="institution-query" name="institution-query">
+            <label for="subject-query">Subject</label>
+            <input type="search" id="subject-query" name="subject-query">
         </div>
         <div class="d-flex flex-row">
             <div class="m-4">
-            <p>Collaborators</p>
+            <p>Seeking Collab</p>
             <label for="collab-query-yes">Yes</label>
             <input class="mt-1" type="radio" id="collab-query-yes" name="collab-query">
-            <label for="collab-query-no">Not Open</label>
+            <label for="collab-query-no">No</label>
             <input type="radio" id="collab-query-no" name="collab-query">
             </div>
             <div class="m-4">
@@ -23,11 +23,12 @@
                 <input type="radio" id="finished-query-no" name="finished-query">
             </div>
         </div>
+        <button class="rounded bg-white" type="Submit">Submit</button>
     </form>
 </div>
 
 <div class="container">
-    {{#each projects}}
+    {{#each allProjects}}
     <div class="row">
         <div class="col">
             <div class="card-deck" style="width: 18rem;">
@@ -49,3 +50,4 @@
             </div>
         </div>
         {{/each}}
+        <script src="/js/filterProject.js"></script>

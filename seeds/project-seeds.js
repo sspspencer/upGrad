@@ -15,7 +15,7 @@ const projectdata = [
   {
     project_name: 'Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue.',
     abstract: 'i am the abstract!',
-    subject: 'b',
+    subject: 'a',
     ongoing_status: true,
     project_url: 'https://europa.eu/parturient/montes/nascetur/ridiculus/mus/etiam/vel.aspx',
     collab_status: true,
