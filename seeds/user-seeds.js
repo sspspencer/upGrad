@@ -3,22 +3,22 @@ const sequelize = require('../config/connections');
 
 const userdata = [
     {
-        name: 'spencer',
+        name: 'Spencer P.',
         email: 'email@email.com',
-        institution: 'carleton',
+        institution: 'Concordia',
         id: 1
     },
     {
-        name: 'sonja',
+        name: 'Janae W',
         email: 'something@email.com',
-        institution: 'mac',
+        institution: 'Ryerson',
         id: 2
     },
     {
-        name: 'janae',
-        email: 'janae@email.com',
-        institution: 'ryerson',
-        id: 4
+        name: 'Sonja I',
+        email: 'sonja@email.com',
+        institution: 'Carleton',
+        id: 3
     },
 ]
 

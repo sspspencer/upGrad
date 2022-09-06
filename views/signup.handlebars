@@ -1,57 +1,42 @@
 <div>
   i am the sign up page!
+  <div class="container">
+    <div class="row">
+      <div class="col-3">
 
-  <form>
-    <div class="form-group">
-      <label for="userName">Full Name</label>
-      <input
-        type="email"
-        class="form-control"
-        id="userName"
-        aria-describedby="fullName"
-        placeholder="Enter your full name"
-      />
+      </div>
+      <div class="col-6">
+
+        <form>
+          <div class="form-group">
+            <label class="h1" for="userName">Full Name</label>
+            <input type="text" class="form-control" id="userName" aria-describedby="fullName"
+              placeholder="Enter your full name" />
+          </div>
+          <div class="form-group">
+            <label class="h1" for="exampleInputEmail1">Email address</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+              placeholder="Enter email" />
+            <small id="emailHelp" class="form-text text-dark">We'll never share your
+              email with anyone else.</small>
+          </div>
+          <div class="form-group">
+            <label class="h1" for="institutionName">University Name</label>
+            <input type="text" class="form-control" id="institutionName" aria-describedby="institutionName"
+              placeholder="Enter your university name" />
+          </div>
+          <div class="form-group">
+            <label class="h1" for="exampleInputPassword1">Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Choose a Password" />
+          </div>
+
+          <button type="submit" id="signup-submit" class="btn btn-dark">Submit</button>
+        </form>
+      </div>
+      <div class="col-3">
+      </div>
     </div>
-    <div class="form-group">
-      <label for="exampleInputEmail1">Email address</label>
-      <input
-        type="email"
-        class="form-control"
-        id="exampleInputEmail1"
-        aria-describedby="emailHelp"
-        placeholder="Enter email"
-      />
-      <small id="emailHelp" class="form-text text-muted">We'll never share your
-        email with anyone else.</small>
-    </div>
-    <div class="form-group">
-      <label for="institutionName">University Name</label>
-      <input
-        type="email"
-        class="form-control"
-        id="institutionName"
-        aria-describedby="institutionName"
-        placeholder="Enter your university name"
-      />
-    </div>
-    <div class="form-group">
-      <label for="exampleInputPassword1">Password</label>
-      <input
-        type="password"
-        class="form-control"
-        id="exampleInputPassword1"
-        placeholder="Choose a Password"
-      />
-    </div>
-    <div class="form-check">
-      <input type="checkbox" class="form-check-input" id="exampleCheck1" />
-      <label class="form-check-label" for="exampleCheck1">Check me out</label>
-    </div>
-    <button
-      type="submit"
-      id="signup-submit"
-      class="btn btn-primary"
-    >Submit</button>
-  </form>
+  </div>
 </div>
+
 <script src="../public/js/signup.js"></script>

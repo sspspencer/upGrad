@@ -1,3 +1,5 @@
+
+
 const router = require("express").Router();
 const sequelize = require("sequelize");
 const { User, Project } = require("../models");
@@ -77,6 +79,12 @@ router.get("/login", (req, res) => {
   // }
   // render login.handlebars
   res.render("login");
+});
+
+
+router.get("/profile", (req, res) => {
+  User.findOne
+  res.render("profile");
 });
 
 router.get("/signup", (req, res) => {

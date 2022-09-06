@@ -26,7 +26,14 @@ function selectedCollab() {
 
 }
 
-filterBtn.addEventListener('click', function () {
-    console.log("Hello World");
-    dropDownInstu.className = "d-block";
-});
+
+// filterBtn.addEventListener('click', function () {
+//     console.log("Hello World");
+
+//     dropDownInstu.className = "d-block";
+//     if (dropDownInstu.style === "none") {
+//         dropDownInstu.style.display = "block";
+//     } else {
+//         dropDownInstu.style.display = "none";
+//     }
+// });

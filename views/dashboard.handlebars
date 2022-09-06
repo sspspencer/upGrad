@@ -1,59 +1,71 @@
 <div>
-    <button class="sticky-top" id="filter-btn">Filter +</button>
-</div>
-<div class="container d-none" id="show-filter">
-    <span class="text-muted">
-        <div class="input-group mb-3">
-            <div class="input-group-prepend">
-                <select onchange="selectedInstu()">
-                    <option value="Carleton">Carleton</option>
-                    <option value="McMaster">McMaster</option>
-                    <option value="Coding Bootcamp">Coding Bootcamp!</option>
-                    <option value="All Universities">All Universities</option>
-                </select>
+    <div class="display-1 text-center justify-content-center"> Find your project:
+    </div>
+    <div class="container d-none" id="show-filter">
+        <span class="text-muted">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <select onchange="selectedInstu()">
+                        <option value="Carleton">Carleton</option>
+                        <option value="McMaster">McMaster</option>
+                        <option value="Coding Bootcamp">Coding Bootcamp!</option>
+                        <option value="All Universities">All Universities</option>
+                    </select>
+                </div>
+                <div class="input-group-prepend">
+                    <select id="dept" onchange=" selectedDept()">
+                        <option value="Arts">Arts</option>
+                        <option value="Sciences">Sciences</option>
+                        <option value="Coding">Coding</option>
+                        <div role="separator" class="dropdown-divider"></div>
+                        <option value="All Departments">All Departments</option>
+                    </select>
+                </div>
+                <div class="input-group-prepend">
+                    <select id="collab" onchange=" selectedCollab()">
+                        <option value="Seeking Collaborators">Seeking Collaborators</option>
+                        <option value="Not Seeking Collaborators">Not Seeking Collaborators</option>
+                        <div role="separator" class="dropdown-divider"></div>
+                        <option value="Any Collaboration Status">Any Collaboration Status</option>
+                    </select>
+                </div>
             </div>
-            <div class="input-group-prepend">
-                <select id="dept" onchange=" selectedDept()">
-                    <option value="Arts">Arts</option>
-                    <option value="Sciences">Sciences</option>
-                    <option value="Coding">Coding</option>
-                    <div role="separator" class="dropdown-divider"></div>
-                    <option value="All Departments">All Departments</option>
-                </select>
-            </div>
-            <div class="input-group-prepend">
-                <select id="collab" onchange=" selectedCollab()">
-                    <option value="Seeking Collaborators">Seeking Collaborators</option>
-                    <option value="Not Seeking Collaborators">Not Seeking Collaborators</option>
-                    <div role="separator" class="dropdown-divider"></div>
-                    <option value="Any Collaboration Status">Any Collaboration Status</option>
-                </select>
-            </div>
-        </div>
-</div>
-</span>
+    </div>
+    </span>
 </div>
 
 <div class="container">
-    {{#each projects}}
     <div class="row">
-        <div class="col">
-            <div class="card-deck" style="width: 18rem;">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">{{project_name}}</h5>
-                        <h5><span class="badge bg-secondary">{{subject}}</span></h5>
-                        <h5 class="txt-dark"><span class="badge bg-secondary">Ongoing Status:{{ongoing_status}}</span>
-                        </h5>
-                        <h5><span class="badge bg-secondary">Seeking Collaborators: {{collab_status}}</span></h5>
-                        <h6 class="card-subtitle mb-2 text-muted">{{user.name}}</h6>
-                        <h6 class="card-subtitle mb-2 text-muted">{{user.institution}}</h6>
-                        <p class="card-text">{{abstract}}</p>
-                        <a href="#" class="card-link">{{project_url}}</a>
-                        <div class="card-footer">
+        <div class="col-2">
+
+        </div>
+        <div class="col-8">
+            {{#each projects}}
+            <div class="row">
+                <div class="col-8">
+                    <div class="card-deck" style="width: 50rem;" id="project-card">
+                        <div class="card research-card">
+                            <div class="card-body">
+                                <h5 class="card-title display-4">{{project_name}}</h5>
+                                <h5 class="card-subtitle mb-2 text-dark">{{user.name}}</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">{{user.institution}}</h6>
+                                <h4 class="card-text">{{abstract}}</h4>
+                                <h6><span class="badge bg-secondary">Subject: {{subject}}</span><span
+                                        class="badge bg-secondary">Ongoing
+                                        Status: {{ongoing_status}}</span><span class="badge bg-secondary">Seeking
+                                        Collaborators: {{collab_status}}</span></h6>
+                                <h6><span>Check out my project here:</span><a href="#"
+                                        class="card-link">{{project_url}}</a> </h6>
+                            </div>
                         </div>
                     </div>
                 </div>
+                {{/each}}
             </div>
         </div>
-        {{/each}}
+        <div class="col-2">
+
+        </div>
+    </div>
+</div>
+</div>
