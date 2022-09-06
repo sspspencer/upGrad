@@ -7,6 +7,7 @@ const unfinishedNoVal = document.querySelector('#finished-query-no');
 // this function is creating a query string based on what the user enters. This query string would then be handled
 // on the backend.
 const getSearchWords = (subjectVal, collabYesVal, collabNoVal, unfinishedYesVal, unfinishedNoVal) => {
+    if (!subjectVal.valu, !collabYesVal, !collabNoVal, !unfinishedYesVal, unfinishedNoVal)
     console.log(subjectVal);
     const queriesArr = [];
     let queryCount = 0;
@@ -15,7 +16,7 @@ const getSearchWords = (subjectVal, collabYesVal, collabNoVal, unfinishedYesVal,
     let collabNoQuery;
     let unfinishedYesQuery;
     let unfinishedNoQuery;
-
+    debugger;
     // if there is a value in input field...
     if (subjectVal !== '') {
         // change the start of the query string from '?' to '&'  based on if there are already one or more queries
@@ -70,14 +71,21 @@ const getSearchWords = (subjectVal, collabYesVal, collabNoVal, unfinishedYesVal,
         queriesArr.push(unfinishedNoQuery);
     }
     // join the query fragments into one whole query & return
+    if (queriesArr[0] === undefined) {
+        return `/dashboard`;
+    }
     const queryStr = queriesArr.join('');
     console.log(queryStr);
     return `/dashboard/search${queryStr}`;
 }
 
+// the url isn't changing correctly
+async function redirectDashboard (){
+    document.location.repalce('/dashboard/');
+}
+
 async function filter (event) {
     event.preventDefault();
-    console.log(subjectVal.value);
         const response = await fetch(`${getSearchWords(
             subjectVal.value, collabYesVal, collabNoVal, unfinishedYesVal, unfinishedNoVal
             )}`, {
@@ -86,8 +94,8 @@ async function filter (event) {
             'Content-Type': 'application/json'
         }
     });
-    // const json = await response;
     document.location.replace(`${getSearchWords(subjectVal.value, collabYesVal, collabNoVal, unfinishedYesVal, unfinishedNoVal)}`);
 }
 
-document.querySelector('#filter-form').addEventListener('submit', filter);
+document.querySelector('#submit-btn').addEventListener('click', filter);
+document.querySelector('#clear-btn').addEventListener('click', redirectDashboard);
