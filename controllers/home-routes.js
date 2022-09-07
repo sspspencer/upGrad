@@ -10,42 +10,8 @@ router.get("/", (req, res) => {
   res.render("homepage");
 });
 
-// display a list of projects on homepage authLogin,
-router.get("/dashboard", (req, res) => {
-  Project.findAll({
-    attributes: [
-      'id',
-      'project_name',
-      'abstract',
-      'collab_status',
-      'ongoing_status',
-      'project_url',
-      'subject',
-    ],
-    include: [
-      {
-        model: User,
-        attributes: ['name', 'institution'],
-      },
-    ],
-  })
-    .then((allProjects) => {
-      // this formats the data Sequelize gives us in a readable format
-      const projects = allProjects.map(project => project.get({ plain: true }));
-      // use the data from the response + loggedIn status to render homepage.handlebars
-      res.render("dashboard", {
-        projects
-        // loggedIn: req.session.loggedIn
-      });
-    })
-    .catch((err) => {
-      console.log(err);
-      res.status(500).json(err);
-    });
-});
-
 // display a specific project on its own page
-router.get("project/:id", (req, res) => {
+router.get("project/:id", authLogin, (req, res) => {
   Project.findOne({
     include: [
       {

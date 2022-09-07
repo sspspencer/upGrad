@@ -1,35 +1,27 @@
 const router = require("express").Router();
 const { User, Project } = require("../../models");
 const authLogin = require("../../utils/auth");
+const getWhereObj = require('../../utils/projectQueryObj');
+// const filterLogin = require('../../public/js/filterProject');
 
-// fetch(`api/projects?subject=math`)
+// fetch(`api/projects?subject=math?inst=Carleton?`)
 
 // get all projects (shown from newest to oldest)
-router.get("/", (req, res) => {
-  const { instu, subject } = req.query;
-  const where = {};
-  if (instu) {
-    where.instu = instu;
-  }
-
-  if (subject) {
-    where.subject = subject;
-  }
-
-  Project.findAll({
-    // attributes: {
-    //     include: [['created_at']]
-    // },
-    // newest posts will show first based on id number
-    where,
-    order: [["id", "ASC"]],
-  })
-    .then((allProjects) => res.json(allProjects))
-    .catch((err) => {
-      console.log(err);
-      res.status(500).json(err);
-    });
-});
+// router.get("/", (req, res) => {
+//   console.log(req.body);
+//   Project.findAll({
+//     // attributes: {
+//     //     include: [['created_at']]
+//     // },
+//     // newest posts will show first based on id number
+//     order: [["id", "ASC"]],
+//   })
+//     .then((allProjects) => res.json(allProjects))
+//     .catch((err) => {
+//       console.log(err);
+//       res.status(500).json(err);
+//     });
+// });
 
 // get a single project
 router.get("/:id", (req, res) => {

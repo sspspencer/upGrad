@@ -1,46 +1,42 @@
-<div>
-    <div class="display-1 text-center justify-content-center"> Find your project:
-    </div>
-    <div class="container d-none" id="show-filter">
-        <span class="text-muted">
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <select onchange="selectedInstu()">
-                        <option value="Carleton">Carleton</option>
-                        <option value="McMaster">McMaster</option>
-                        <option value="Coding Bootcamp">Coding Bootcamp!</option>
-                        <option value="All Universities">All Universities</option>
-                    </select>
-                </div>
-                <div class="input-group-prepend">
-                    <select id="dept" onchange=" selectedDept()">
-                        <option value="Arts">Arts</option>
-                        <option value="Sciences">Sciences</option>
-                        <option value="Coding">Coding</option>
-                        <div role="separator" class="dropdown-divider"></div>
-                        <option value="All Departments">All Departments</option>
-                    </select>
-                </div>
-                <div class="input-group-prepend">
-                    <select id="collab" onchange=" selectedCollab()">
-                        <option value="Seeking Collaborators">Seeking Collaborators</option>
-                        <option value="Not Seeking Collaborators">Not Seeking Collaborators</option>
-                        <div role="separator" class="dropdown-divider"></div>
-                        <option value="Any Collaboration Status">Any Collaboration Status</option>
-                    </select>
-                </div>
+
+<p class="ml-2">
+  <a class="btn sticky-top" data-toggle="collapse" href="#filterMenu" role="button">+ Filter</a>
+</p>
+<div class="collapse" id="filterMenu">
+    <form id="filter-form" class="mb-3 d-flex flew-row flex-wrap justify-content-center border align-items-center rounded py-3 mx-2 bg-light">
+        <div class="m-4">
+            <label for="subject-query">Subject</label>
+            <input type="search" id="subject-query" name="subject-query">
+        </div>
+        <div class="d-flex flex-row">
+            <div class="m-4">
+                <p>Seeking Collab</p>
+                <label for="collab-query-yes">Yes</label>
+                <input class="mt-1" type="radio" id="collab-query-yes" name="collab-query">
+                <label for="collab-query-no">No</label>
+                <input type="radio" id="collab-query-no" name="collab-query">
             </div>
-    </div>
-    </span>
+            <div class="m-4">
+                <p>Finished</p>
+                <label for="finished-query-yes">Yes</label>
+                <input type="radio" id="finished-query-yes" name="finished-query">
+                <label for="finished-query-no">No</label>
+                <input type="radio" id="finished-query-no" name="finished-query">
+            </div>
+        </div>
+        <div class="d-flex flex-column">
+            <button id="submit-btn" class="rounded bg-white my-1">Filter</button>
+            <button id="clear-btn" class="rounded bg-white my-1">Clear Filters</button>
+        </div>
+    </form>
 </div>
 
 <div class="container">
+    {{#each allProjects}}
     <div class="row">
         <div class="col-2">
-
         </div>
         <div class="col-8">
-            {{#each projects}}
             <div class="row">
                 <div class="col-8">
                     <div class="card-deck" style="width: 50rem;" id="project-card">
@@ -60,12 +56,10 @@
                         </div>
                     </div>
                 </div>
-                {{/each}}
+             
             </div>
         </div>
-        <div class="col-2">
 
-        </div>
-    </div>
-</div>
-</div>
+{{/each}}
+        <script src="/js/filterProject.js"></script>
+
