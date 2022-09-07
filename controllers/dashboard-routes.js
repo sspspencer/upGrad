@@ -11,7 +11,7 @@ router.get("/", authLogin, (req, res) => {
     include: [
       {
         model: User,
-        attributes: ["name", "institution"],
+        attributes: ["name", "institution", "email"],
       },
     ],
   })
@@ -35,14 +35,19 @@ router.get("/search", authLogin, (req, res) => {
   const where = getWhereObj(req.query);
   Project.findAll({
     where,
-    raw: true,
     order: [["id", "ASC"]],
+    include: [
+      {
+        model: User,
+        attributes: ["name", "institution", "email"],
+      },
+    ],
   })
-    .then((allProjects) => {
-      // this is currently not going to be called because allProjects returns a '[]'
-      if (!allProjects) {
-        res.json({ message: "No results found for this search" });
-      }
+    .then((allProjectsData) => {
+      // this formats the data Sequelize gives us in a readable format
+      const allProjects = allProjectsData.map((project) =>
+        project.get({ plain: true })
+      );
 
       res.render("dashboard", { allProjects });
     })
@@ -63,7 +68,7 @@ router.get("/profile", authLogin, (req, res) => {
     include: [
       {
         model: User,
-        attributes: ["name", "institution"],
+        attributes: ["name", "institution", "email"],
       },
     ],
   })
