@@ -4,33 +4,34 @@ const sequelize = require('../config/connections');
 
 const projectdata = [
   {
-    project_name: 'Donec posuere metus vitae ipsum.',
-    subject: 'a',
+    project_name: 'Making sure cats really meow',
+    subject: 'Science',
     ongoing_status: true,
+    abstract: "Do cats really go meow?!",
     project_url: 'https://buzzfeed.com/in/imperdiet/et/commodo/vulputate.png',
     collab_status: true,
     user_id: 1,
   },
 
   {
-    project_name: 'Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue.',
-    abstract: 'i am the abstract!',
-    subject: 'a',
+    project_name: 'Cats Rule, Dogs Drool.',
+    abstract: 'Cats are better than dogs and I can prove it',
+    subject: 'Science',
     ongoing_status: true,
     project_url: 'https://europa.eu/parturient/montes/nascetur/ridiculus/mus/etiam/vel.aspx',
     collab_status: true,
-    user_id: 2,
+    user_id: 3,
 
   },
 
   {
-    project_name: 'Nunc purus.',
-    abstract: 'i am the abstract!',
-    subject: 'c',
+    project_name: 'I love cats!',
+    abstract: 'They are the best',
+    subject: 'Arts',
     ongoing_status: true,
     project_url: 'http://desdev.cn/enim/blandit/mi.jpg',
     collab_status: true,
-    user_id: 4
+    user_id: 2
   },
   // {
   //   project_name: 'Pellentesque eget nunc.',

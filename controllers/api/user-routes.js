@@ -74,7 +74,7 @@ router.get("/:id", (req, res) => {
     },
     // only respond with user who matched params id
     where: {
-      id: req.params.id,
+      id: 1,
     },
     // also include a list of user projects
     include: [
@@ -83,8 +83,12 @@ router.get("/:id", (req, res) => {
       },
     ],
   })
+
     // respond with user's data as specified above
-    .then((userData) => res.json(userData))
+    .then((userData) => {
+
+      res.render('profile', { userData })
+    })
     // display/respond with an error, if any
     .catch((err) => {
       console.log(err);

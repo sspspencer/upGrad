@@ -1,3 +1,4 @@
+
 <p class="ml-2">
   <a class="btn sticky-top" data-toggle="collapse" href="#filterMenu" role="button">+ Filter</a>
 </p>
@@ -33,24 +34,32 @@
 <div class="container">
     {{#each allProjects}}
     <div class="row">
-        <div class="col">
-            <div class="card-deck" style="width: 18rem;">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">{{project_name}}</h5>
-                        <h5><span class="badge bg-secondary">{{subject}}</span></h5>
-                        <h5 class="txt-dark"><span class="badge bg-secondary">Ongoing Status:{{ongoing_status}}</span>
-                        </h5>
-                        <h5><span class="badge bg-secondary">Seeking Collaborators: {{collab_status}}</span></h5>
-                        <h6 class="card-subtitle mb-2 text-muted">{{user.name}}</h6>
-                        <h6 class="card-subtitle mb-2 text-muted">{{user.institution}}</h6>
-                        <p class="card-text">{{abstract}}</p>
-                        <a href="#" class="card-link">{{project_url}}</a>
-                        <div class="card-footer">
+        <div class="col-2">
+        </div>
+        <div class="col-8">
+            <div class="row">
+                <div class="col-8">
+                    <div class="card-deck" style="width: 50rem;" id="project-card">
+                        <div class="card research-card">
+                            <div class="card-body">
+                                <h5 class="card-title display-4">{{project_name}}</h5>
+                                <h5 class="card-subtitle mb-2 text-dark">{{user.name}}</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">{{user.institution}}</h6>
+                                <h4 class="card-text">{{abstract}}</h4>
+                                <h6><span class="badge bg-secondary">Subject: {{subject}}</span><span
+                                        class="badge bg-secondary">Ongoing
+                                        Status: {{ongoing_status}}</span><span class="badge bg-secondary">Seeking
+                                        Collaborators: {{collab_status}}</span></h6>
+                                <h6><span>Check out my project here:</span><a href="#"
+                                        class="card-link">{{project_url}}</a> </h6>
+                            </div>
                         </div>
                     </div>
                 </div>
+             
             </div>
         </div>
-        {{/each}}
+
+{{/each}}
         <script src="/js/filterProject.js"></script>
+

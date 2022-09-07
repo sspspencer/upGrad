@@ -19,4 +19,6 @@ function selectedCollab() {
   document.getElementById("demo-3").innerHTML = "You selected: " + dept;
 }
 
+
 document.querySelector("#filter-btn").addEventListener("click", selectedInstu);
+
