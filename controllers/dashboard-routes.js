@@ -4,62 +4,83 @@ const { User, Project } = require("../models");
 const authLogin = require("../utils/auth");
 const getWhereObj = require('../utils/projectQueryObj');
 
+
 // display a list of projects on homepage authLogin,
 router.get("/", authLogin, (req, res) => {
   Project.findAll({
-    attributes: [
-      'id',
-      'project_name',
-      'abstract',
-      'collab_status',
-      'ongoing_status',
-      'project_url',
-      'subject',
-    ],
+    order: [["id", "ASC"]],
     include: [
       {
         model: User,
         attributes: ['name', 'institution'],
-      },
-    ],
+      }]
   })
-    .then((allProjects) => {
+    .then((allProjectsData) => {
       // this formats the data Sequelize gives us in a readable format
-      const projects = allProjects.map(project => project.get({ plain: true }));
-      // use the data from the response + loggedIn status to render homepage.handlebars
-      res.render("dashboard", {
-        projects
-        // loggedIn: req.session.loggedIn
-      });
+      const allProjects = allProjectsData.map(project => project.get({ plain: true }));
+
+      res.render('dashboard', { allProjects });
     })
     .catch((err) => {
+      console.log('ENTERING ERROR');
       console.log(err);
       res.status(500).json(err);
     });
 });
 
-  router.get('/search', authLogin, (req, res) => {
-    console.log('ENTERING ROUTE');
-    const where = getWhereObj(req.query);
-    Project.findAll({
-      where,
-      raw: true,
-      order: [["id", "ASC"]],
-    })
-      .then((allProjects) => {
-        // this is currently not going to be called because allProjects returns a '[]'
-        if (!allProjects) {
-          res.json({message: 'No results found for this search'});
-        }
-        console.log(allProjects);
-        res.render('dashboard', {allProjects});
-      })
-      .catch((err) => {
-        console.log('ENTERING ERROR');
-        console.log(err);
-        res.status(500).json(err);
-      });
+router.get('/search', authLogin, (req, res) => {
+  console.log('ENTERING ROUTE');
+  const where = getWhereObj(req.query);
+  Project.findAll({
+    where,
+    raw: true,
+    order: [["id", "ASC"]],
   })
+    .then((allProjects) => {
+      // this is currently not going to be called because allProjects returns a '[]'
+      if (!allProjects) {
+        res.json({ message: 'No results found for this search' });
+      }
+
+      res.render('dashboard', { allProjects });
+    })
+    .catch((err) => {
+      console.log('ENTERING ERROR');
+      console.log(err);
+      res.status(500).json(err);
+    });
+})
+
+
+//display all projects user has
+router.get('/profile', authLogin, (req, res) => {
+  Project.findAll({
+    where: {
+      user_id: req.session.user_id
+    },
+    order: [["id", "ASC"]],
+    include: [
+      {
+        model: User,
+        attributes: ['name', 'institution'],
+      }]
+  })
+    .then((allUserProjects) => {
+      // this is currently not going to be called because allUserProjects returns a '[]'
+      if (!allUserProjects) {
+        res.json({ message: 'No results found for this search' });
+      }
+      // this formats the data Sequelize gives us in a readable format
+      const userProjects = allUserProjects.map(project => project.get({ plain: true }));
+
+      res.render('profile', { userProjects });
+    })
+    .catch((err) => {
+      console.log('ENTERING ERROR');
+      console.log(err);
+      res.status(500).json(err);
+    });
+})
 
 
 router.get("/edit/:id", authLogin, (req, res) => {

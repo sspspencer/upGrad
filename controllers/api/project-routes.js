@@ -6,25 +6,25 @@ const getWhereObj = require('../../utils/projectQueryObj');
 
 // fetch(`api/projects?subject=math?inst=Carleton?`)
 
-// get all projects (shown from newest to oldest)
-// router.get("/", (req, res) => {
-//   console.log(req.body);
-//   Project.findAll({
-//     // attributes: {
-//     //     include: [['created_at']]
-//     // },
-//     // newest posts will show first based on id number
-//     order: [["id", "ASC"]],
-//   })
-//     .then((allProjects) => res.json(allProjects))
-//     .catch((err) => {
-//       console.log(err);
-//       res.status(500).json(err);
-//     });
-// });
 
+// get all projects (shown from newest to oldest)
+router.get("/", authLogin, (req, res) => {
+  console.log(req.body);
+  Project.findAll({
+    // attributes: {
+    //     include: [['created_at']]
+    // },
+    // newest posts will show first based on id number
+    order: [["id", "ASC"]],
+  })
+    .then((allProjects) => res.render('dashboard', { allProjects }))
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
 // get a single project
-router.get("/:id", (req, res) => {
+router.get("/:id", authLogin, (req, res) => {
   Project.findOne({
     // attributes: {
     //     include: [['created_at']]
@@ -43,9 +43,7 @@ router.get("/:id", (req, res) => {
 // create a project
 router.post("/", (req, res) => {
   Project.create({
-    // these are all the data we'll need from input fields on frontend when the req is made
-    // user_id: req.session.user_id,
-    user_id: req.body.user_id,
+    user_id: req.session.user_id,
     project_name: req.body.project_name,
     abstract: req.body.abstract,
     collab_status: req.body.collab_status,
@@ -53,7 +51,12 @@ router.post("/", (req, res) => {
     subject: req.body.subject,
     ongoing_status: req.body.ongoing_status,
   })
-    .then((newProjectData) => res.json(newProjectData))
+    .then((newProjectData) => {
+      console.log('hi')
+      console.log(newProjectData)
+      res.json(newProjectData)
+
+    })
     .catch((err) => {
       console.log(err);
       res.status(500).json(err);

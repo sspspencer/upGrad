@@ -1,9 +1,9 @@
-
 <p class="ml-2">
-  <a class="btn sticky-top" data-toggle="collapse" href="#filterMenu" role="button">+ Filter</a>
+    <a class="btn sticky-top btn-light" data-toggle="collapse" href="#filterMenu" role="button">+ Filter</a>
 </p>
 <div class="collapse" id="filterMenu">
-    <form id="filter-form" class="mb-3 d-flex flew-row flex-wrap justify-content-center border align-items-center rounded py-3 mx-2 bg-light">
+    <form id="filter-form"
+        class="mb-3 d-flex flew-row flex-wrap justify-content-center border align-items-center rounded py-3 mx-2 bg-light">
         <div class="m-4">
             <label for="subject-query">Subject</label>
             <input type="search" id="subject-query" name="subject-query">
@@ -30,7 +30,7 @@
         </div>
     </form>
 </div>
-
+{{log allProjects}}
 <div class="container">
     {{#each allProjects}}
     <div class="row">
@@ -56,10 +56,9 @@
                         </div>
                     </div>
                 </div>
-             
+
             </div>
         </div>
 
-{{/each}}
+        {{/each}}
         <script src="/js/filterProject.js"></script>
-

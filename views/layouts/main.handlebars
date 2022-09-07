@@ -1,5 +1,6 @@
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- add bootstrap-->
@@ -9,39 +10,36 @@
     <link rel="stylesheet" href="../../public/stylesheets/style.css">
     <div class="pos-f-t">
         <div class="collapse" id="navbarToggleExternalContent">
-            <div class="bg-dark p-4">
-                <button type="button" class="btn btn-light">Profile</button>
+            <div class="bg-dark p-2">
+                <button type="button" class="btn btn-light"><a href="/dashboard/profile">Profile</a></button>
                 <div>
-                    {{#if loggedIn}}
-                    <button id="logout">Log Out!</button>
-                    {{else}}
-                    <a href="/login">login</a>
-                    {{/if}}
+                    <div class="p-2">
+                        <button type="button" class="btn btn-light" id="logout">Log Out!</button>
+                    </div>
+                    <div class="p-1">
+                        <button type="button" class="btn btn-light"> <a href="/dashboard">Dashboard</a></button>
+                    </div>
                 </div>
- id="logout-button">Log Out!</button>
+
+            </div>
         </div>
-      </div>
-      <nav class="navbar navbar-dark bg-dark">
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarToggleExternalContent"
-          aria-controls="navbarToggleExternalContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <header>
-          <h1>
-            <a href="/">UpGrad</a>
-          </h1>
-        </header>
-      </nav>
+        <nav class="navbar navbar-dark bg-dark">
+            <button class="navbar-toggler" type="button" data-toggle="collapse"
+                data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <header>
+                <h1>
+                    <a href="/dashboard">UpGrad</a>
+                </h1>
+            </header>
+        </nav>
     </div>
     <title>UpGrad</title>
     <link rel="stylesheet" href="/stylesheets/style.css" />
-  </head>
+</head>
+
 <body>
     <div class="area">
         <div class="wrapper">
@@ -81,12 +79,12 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 
 <script src="/js/profile.js"></script>
-{{#if loggedIn}}
-<script src="/javascript/logout.js"></script>
-{{/if}}
+
+<script src="/js/logout.js"></script>
 
 
 
 
-     
+
+
 </html>

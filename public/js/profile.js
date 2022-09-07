@@ -1,10 +1,39 @@
+var projectName = document.getElementById("project-name");
 var subjectInput = document.getElementById("subject-query");
 var abstractInput = document.getElementById("abstract-input");
 var radioCollabYesInput = document.getElementById("collab-query-yes");
-var radioCollabNoInput = document.getElementById("collab-query-no");
 var radioFinishedYesInput = document.getElementById("finished-query-yes");
-var radioFinishedNoInput = document.getElementById("finished-query-no");
+var projectUrlInput = document.getElementById("project-url");
 
+async function createProjects() {
+    var project_name = projectName.value;
+    var subject = subjectInput.value;
+    var abstract = abstractInput.value;
+    var radioCollabYesInputValue = radioCollabYesInput.value;
+    var radioFinishedYesInputValue = radioFinishedYesInput.value;
+    var project_url = projectUrlInput.value;
+
+    if (radioCollabYesInputValue === "on") {
+        var collab_status = true;
+    }
+    if (radioFinishedYesInputValue === "on") {
+        var ongoing_status = true
+    }
+    const response = await fetch("/api/projects", {
+        method: "POST",
+        body: JSON.stringify({
+            project_name,
+            subject,
+            abstract,
+            collab_status,
+            ongoing_status,
+            project_url
+        }),
+
+        headers: { "Content-Type": "application/json" },
+    });
+    location.reload();
+}
 
 function revealResearch() {
     var x = document.getElementById("show-filter");
@@ -27,3 +56,5 @@ function openProjectForm() {
 //     console.log("Hello World");
 //     dropDownInstu.className = "d-block";
 // });
+
+document.querySelector(".project-form").addEventListener('submit', createProjects);
